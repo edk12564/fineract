@@ -30,6 +30,7 @@ jobs:
            exit 1
          fi
 
+
          user_ids=$(echo "$commits" | jq -r '.[] | select(.author.type != "Bot") | .author.id')
          if echo "$user_ids" | sort | uniq -d | grep -q .; then
            echo "multiple_commits=true" >> $GITHUB_OUTPUT
