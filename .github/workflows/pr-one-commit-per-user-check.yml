@@ -26,7 +26,7 @@ jobs:
 
          if echo "$commits" | jq -e '.[] | select(.author == null)' > /dev/null; then
            echo "null_authors=true" >> $GITHUB_OUTPUT
-           echo "::error::Some commits have a git email that is not linked to a GitHub account. Please ensure your git email matches one of your GitHub Account emails."
+           echo "::error::Some commits have a git email that is not linked to a GitHub account. Please ensure your git email matches one of your GitHub Account emails. Please squash your commits as well to prevent this message again."
            exit 1
          fi
          
@@ -47,7 +47,7 @@ jobs:
 
          if [ "${{ steps.check.outputs.null_authors }}" == "true" ]; then
            gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --body \
-         $'**One Commit Per User Check Failed**\n\nSome committers have a git email that does not match their GitHub account. Please ensure your git email matches one of your GitHub Account emails.'
+         $'**One Commit Per User Check Failed**\n\nSome committers have a git email that does not match their GitHub account. Please ensure your git email matches one of your GitHub Account emails. Please squash your commits as well to prevent this message again.'
          fi
 
 
