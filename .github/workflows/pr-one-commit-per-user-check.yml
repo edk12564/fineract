@@ -26,7 +26,7 @@ jobs:
 
          if echo "$commits" | jq -e '.[] | select(.author == null)' > /dev/null; then
            echo "null_authors=true" >> $GITHUB_OUTPUT
-           echo "::error::Some commits have a git email that is not linked to a GitHub account. Please ensure your git email matches one of your GitHub Account emails. Please squash your commits as well to prevent this message again."
+           echo "::error::Some commits have a git email that is not linked to a GitHub account. Please ensure your git email matches one of your GitHub Account emails.\n\nPlease also squash your commits to prevent this message again."
            exit 1
          fi
          
