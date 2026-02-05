@@ -29,6 +29,7 @@ jobs:
           
           echo "test"
           echo "test"
+          echo "test"
 
           user_ids=$(echo "$commits" | jq -r '.[] | select(.author.type != "Bot") | .author.id')
           if echo "$user_ids" | sort | uniq -d | grep -q .; then
